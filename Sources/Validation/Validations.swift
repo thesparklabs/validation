@@ -78,7 +78,7 @@ public struct Validations<M>: CustomStringConvertible where M: Validatable {
         }
 
         if !errors.isEmpty {
-            throw ValidateErrors(errors)
+            throw ValidationError(errors)
         }
     }
 }
@@ -108,31 +108,5 @@ extension Validations where M: Reflectable {
     ///     - custom: Closure accepting the `KeyPath`'s value. Throw a `ValidationError` here if the data is invalid.
     public mutating func add<T>(_ keyPath: KeyPath<M, T>, _ readable: String, _ custom: @escaping (T) throws -> Void) throws {
         try add(keyPath, at: M.reflectProperty(forKey: keyPath)?.path ?? [], readable, custom)
-    }
-}
-
-// MARK: Private
-
-/// A collection of errors thrown by validatable models validations
-fileprivate struct ValidateErrors: ValidationError {
-    /// the errors thrown
-    var errors: [ValidationError]
-
-    /// See ValidationError.keyPath
-    var path: [String]
-
-    /// See ValidationError.reason
-    var reason: String {
-        return errors.map { error in
-            var mutableError = error
-            mutableError.path = path + error.path
-            return mutableError.reason
-            }.joined(separator: ", ")
-    }
-
-    /// creates a new validatable error
-    init(_ errors: [ValidationError]) {
-        self.errors = errors
-        self.path = []
     }
 }

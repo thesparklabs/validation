@@ -63,7 +63,7 @@ fileprivate struct CharacterSetValidator: ValidatorType {
                 let string = characterSet.traits.joined(separator: ", ")
                 reason += " (allowed: \(string))"
             }
-            throw BasicValidationError(reason)
+            throw ValidationError(reason)
         }
     }
 }

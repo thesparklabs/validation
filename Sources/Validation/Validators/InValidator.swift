@@ -37,7 +37,7 @@ fileprivate struct InValidator<T>: ValidatorType where T: Equatable {
     /// See `Validator`.
     public func validate(_ item: T) throws {
         guard array.contains(item) else {
-            throw BasicValidationError("is not \(validatorReadable)")
+            throw ValidationError("is not \(validatorReadable)")
         }
     }
 }

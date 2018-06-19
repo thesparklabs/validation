@@ -26,7 +26,7 @@ fileprivate struct EmailValidator: ValidatorType {
             let range = s.range(of: "[A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,64}", options: [.regularExpression, .caseInsensitive]),
             range.lowerBound == s.startIndex && range.upperBound == s.endIndex
         else {
-            throw BasicValidationError("is not a valid email address")
+            throw ValidationError("is not a valid email address")
         }
     }
 }

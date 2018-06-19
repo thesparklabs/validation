@@ -23,7 +23,7 @@ fileprivate struct NilValidator<T>: ValidatorType {
     /// See `Validator`.
     func validate(_ data: T?) throws {
         if data != nil {
-            throw BasicValidationError("is not nil")
+            throw ValidationError("is not nil")
         }
     }
 }

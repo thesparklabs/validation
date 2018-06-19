@@ -75,13 +75,13 @@ fileprivate struct CountValidator<T>: ValidatorType where T: Collection {
     func validate(_ data: T) throws {
         if let min = self.min {
             guard data.count >= min else {
-                throw BasicValidationError("is not larger than \(min)")
+                throw ValidationError("is not larger than \(min)")
             }
         }
 
         if let max = self.max {
             guard data.count <= max else {
-                throw BasicValidationError("is larger than \(max)")
+                throw ValidationError("is larger than \(max)")
             }
         }
     }

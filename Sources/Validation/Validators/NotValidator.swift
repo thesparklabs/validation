@@ -35,7 +35,7 @@ fileprivate struct NotValidator<T>: ValidatorType {
             error = e
         }
         guard error != nil else {
-            throw BasicValidationError("is \(rhs.readable)")
+            throw ValidationError("is \(rhs.readable)")
         }
     }
 }
