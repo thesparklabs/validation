@@ -21,7 +21,7 @@ public struct ValidationError {
     /// General
     public init(_ message: String, path:[String] = [], errorType:ValidationErrorType = .Basic) {
         self.message = message
-        self.path = []
+        self.path = path
         self.errorType = errorType
     }
 
