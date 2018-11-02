@@ -70,13 +70,13 @@ fileprivate struct RangeValidator<T>: ValidatorType where T: Comparable {
     func validate(_ data: T) throws {
         if let min = self.min {
             guard data >= min else {
-                throw ValidationError("is not larger than \(min)")
+                throw ValidationError("is less than \(min)")
             }
         }
 
         if let max = self.max {
             guard data <= max else {
-                throw ValidationError("is larger than \(max)")
+                throw ValidationError("is greater than \(max)")
             }
         }
     }
