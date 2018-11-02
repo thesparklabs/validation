@@ -33,7 +33,7 @@ fileprivate struct URLValidator: ValidatorType {
     func validate(_ data: String) throws {
         guard let url = URL(string: data),
             url.isFileURL || (url.host != nil && url.scheme != nil) else {
-            throw BasicValidationError("is not a valid URL")
+            throw ValidationError("is not a valid URL")
         }
     }
 }
